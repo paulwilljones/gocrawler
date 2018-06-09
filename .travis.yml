@@ -10,6 +10,12 @@ go:
   - 1.8.x
   - master
 
+addons:
+  sonarcloud:
+    organization: paulwilljones-github
+    token:
+      secure: "aZeFC73T0skE/+GJ+FQef6er/+6B+GtAYaeNmWSEMTTFivGTWZs+rnjVdNU2D/ek8uVBQTw6sx/8LOyW+ArAe1JrihTLSu11psaaq+Ff9/Gsv003ctF7LK88LTfJQ65sO+kwxda0k2s3huUhvdRpOS0O6vPeh3fNIBhzmWMbELi32b+mjVeQiwQK8xaHV1Acd52i1Gr+D9PisdObnyIrZfmYUscNlQNV67MMeJ8MGt5gPKMlWGFMQdaUch9Bb4i0c4U5ap8n1BsKPBVaXUoiGaMUFxHaCHJT1FpKrCmAdB7HKfgmpSwucW+EQ4ueWKC1L07Fd/550F6qXgnvRSfs43tHshviWlDgK07CEepLJEw2bAO0HB4HEj019htUpKXJ/hZgWlqA6sveGrESx7cSE/yhCMDuXG5bui6Tdp9yAjWsd2/pweFEWddfpCrZgbw4y4WYbJ2RxKJVvQlieqGUkPr48cBL6rNAD/m6Y2bXA10ZBzT/Vttb+c6tIUthZuKFJEXJbaLBIFOP5uikulPSDISjWLyv4XsB/9ZPgNF5rhg+kFp6dETIy5WsZTTwyf1dQWCbDtgq4SQufnQfpKXnne1pN9Ufb1uPoQePRAibCvVUvrd9l70V7VYAYpOL7rJVfszM1D0TERZUQmPQ6or+O7DBqLJr/RKpdFdLqErAhkM="
+
 before_install:
   - go get -t -v ./...
 
@@ -20,6 +26,7 @@ install:
 
 script:
   - go test -race -coverprofile=coverage.txt -covermode=atomic
+  - sonar-scanner
   - make test
   - make package
 
