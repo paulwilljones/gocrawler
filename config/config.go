@@ -29,10 +29,12 @@ type Provider interface {
 
 var defaultConfig *viper.Viper
 
+// Config ...
 func Config() Provider {
 	return defaultConfig
 }
 
+// LoadConfigProvider ...
 func LoadConfigProvider(appName string) Provider {
 	return readViperConfig(appName)
 }
@@ -47,10 +49,9 @@ func readViperConfig(appName string) *viper.Viper {
 	v.AutomaticEnv()
 
 	// global defaults
-	
+
 	v.SetDefault("json_logs", false)
 	v.SetDefault("loglevel", "debug")
-	
 
 	return v
 }

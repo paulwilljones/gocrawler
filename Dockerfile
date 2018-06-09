@@ -1,10 +1,10 @@
 # Build Stage
-FROM lacion/docker-alpine:gobuildimage AS build-stage
+FROM quay.io/paulwilljones/docker-alpine:gobuildimage AS build-stage
 
 LABEL app="build-gocrawler"
 LABEL REPO="https://github.com/paulwilljones/gocrawler"
 
-ENV GOROOT=/usr/lib/go \
+ENV GOROOT=/usr/local/go \
     GOPATH=/gopath \
     GOBIN=/gopath/bin \
     PROJPATH=/gopath/src/github.com/paulwilljones/gocrawler
@@ -18,10 +18,11 @@ WORKDIR /gopath/src/github.com/paulwilljones/gocrawler
 RUN make build-alpine
 
 # Final Stage
-FROM lacion/docker-alpine:latest
+FROM quay.io/paulwilljones/docker-alpine:master
 
 ARG GIT_COMMIT
 ARG VERSION
+LABEL NAME="gocrawler"
 LABEL REPO="https://github.com/paulwilljones/gocrawler"
 LABEL GIT_COMMIT=$GIT_COMMIT
 LABEL VERSION=$VERSION

@@ -42,17 +42,15 @@ func init() {
 	defaultLogger = newLogrusLogger(config.Config())
 }
 
-
+// NewLogger ...
 func NewLogger(cfg config.Provider) *logrus.Logger {
 	return newLogrusLogger(cfg)
 }
 
-
-
 func newLogrusLogger(cfg config.Provider) *logrus.Logger {
 
 	l := logrus.New()
-	
+
 	if cfg.GetBool("json_logs") {
 		l.Formatter = new(logrus.JSONFormatter)
 	}
@@ -68,17 +66,20 @@ func newLogrusLogger(cfg config.Provider) *logrus.Logger {
 	default:
 		l.Level = logrus.DebugLevel
 	}
-	
+
 	return l
 }
 
+// Fields ...
 type Fields map[string]interface{}
 
+// With ...
 func (f Fields) With(k string, v interface{}) Fields {
 	f[k] = v
 	return f
 }
 
+// WithFields ...
 func (f Fields) WithFields(f2 Fields) Fields {
 	for k, v := range f2 {
 		f[k] = v
@@ -86,6 +87,7 @@ func (f Fields) WithFields(f2 Fields) Fields {
 	return f
 }
 
+// WithFields ...
 func WithFields(fields Fields) Logger {
 	return defaultLogger.WithFields(logrus.Fields(fields))
 }

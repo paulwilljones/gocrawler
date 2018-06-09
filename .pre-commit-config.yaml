@@ -1,0 +1,22 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v1.3.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-json
+    -   id: check-added-large-files
+    -   id: check-yaml
+    -   id: requirements-txt-fixer
+- repo: git://github.com/dnephin/pre-commit-golang
+  rev: v0.3.2
+  hooks:
+    - id: go-fmt
+    - id: go-vet
+    - id: go-lint
+    - id: validate-toml
+    - id: no-go-testing
+-   repo: https://github.com/Lucas-C/pre-commit-hooks-go
+    rev: v1.0.0
+    hooks:
+    -   id: checkmake

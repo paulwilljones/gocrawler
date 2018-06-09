@@ -1,9 +1,34 @@
+sudo: required
+
 language: go
 
+services: docker
+
 go:
+  - 1.10.x
+  - 1.9.x
   - 1.8.x
   - master
 
+before_install:
+  - go get -t -v ./...
+
 install:
-  - go get -v github.com/Masterminds/glide 
+  - go get -v github.com/Masterminds/glide
+  - go get -u github.com/golang/dep/...
   - make get-deps
+
+script:
+  - go test -race -coverprofile=coverage.txt -covermode=atomic
+  - make test
+  - make package
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" quay.io
+
+deploy:
+  provider: script
+  script: make release
+  on:
+    branch: master
