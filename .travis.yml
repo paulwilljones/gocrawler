@@ -33,6 +33,7 @@ script:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" quay.io
+  - rm coverage.txt
 
 deploy:
   provider: script
