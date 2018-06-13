@@ -1,0 +1,5 @@
+.*
+!*.git
+*.txt
+Gopkg
+sonar-project.properties

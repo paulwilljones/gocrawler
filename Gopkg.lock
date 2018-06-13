@@ -2,6 +2,12 @@
 
 
 [[projects]]
+  branch = "master"
+  name = "github.com/JackDanger/collectlinks"
+  packages = ["."]
+  revision = "24c4ee2870ba625f927b59de8c421c3f0be82b90"
+
+[[projects]]
   name = "github.com/Sirupsen/logrus"
   packages = ["."]
   revision = "c155da19408a8799da419ed3eeb0cb5db0ad5dbc"
@@ -89,6 +95,15 @@
 
 [[projects]]
   branch = "master"
+  name = "golang.org/x/net"
+  packages = [
+    "html",
+    "html/atom"
+  ]
+  revision = "db08ff08e8622530d9ed3a0e8ac279f6d4c02196"
+
+[[projects]]
+  branch = "master"
   name = "golang.org/x/sys"
   packages = [
     "unix",
@@ -118,6 +133,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "a0118878978a1734d1a4cd315a233357700bcf6078ef68ac8a95074fbac172ba"
+  inputs-digest = "73b16ceda729a2b00bdb19eaa660fadfa69ae75a726dd6cf9da2c7fc8f183537"
   solver-name = "gps-cdcl"
   solver-version = 1
